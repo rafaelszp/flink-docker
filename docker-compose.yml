@@ -3,24 +3,30 @@ services:
   jobmanager: 
     image: apache/flink:1.20.0-scala_2.12-java17
     command: "jobmanager.sh start-foreground"
+    network_mode: host
     ports:
       - 28081:28081
+      - 6123:6123
+      - 6124:6124
     volumes:
       - ./conf:/opt/flink/conf
       - flink_data:/tmp/
     environment:
-      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+      # - JOB_MANAGER_RPC_ADDRESS=jobmanager
+      - JOB_MANAGER_RPC_ADDRESS=localhost
 
   taskmanager:
     image: apache/flink:1.20.0-scala_2.12-java17
     depends_on:
       - jobmanager
     command: "taskmanager.sh start-foreground"
+    network_mode: host
     volumes:
       - ./conf:/opt/flink/conf
       - flink_data:/tmp/
     environment:
-      - JOB_MANAGER_RPC_ADDRESS=jobmanager
+      # - JOB_MANAGER_RPC_ADDRESS=jobmanager
+      - JOB_MANAGER_RPC_ADDRESS=localhost
 
 
   broker:

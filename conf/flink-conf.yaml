@@ -2,7 +2,7 @@ blob.server.port: 6124
 taskmanager.memory.process.size: 1728Mb
 heartbeat.timeout: 5000
 rest.flamegraph.enabled: true
-jobmanager.rpc.address: jobmanager
+jobmanager.rpc.address: localhost
 jobmanager.memory.process.size: 1600Mb
 state.savepoints.dir: file:///tmp/flink-savepoints-directory
 heartbeat.interval: 1000
